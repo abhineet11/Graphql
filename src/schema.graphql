@@ -1,0 +1,59 @@
+type Query {
+    id: ID!,
+    name: String!,
+    age: Int!,
+    greeting(name: String): String!,
+    add(number: [Int!]): Float!,
+    employed: Boolean!,
+    gpa: Float,
+    me:  User!,
+    post: Post,
+    grades: [Int!]!,
+    users(query: String): [User!]!,
+    posts(query: String): [Post!]!,
+    comments: [Comment]
+}
+
+type Subscription {
+    count: Int!,
+    posts: Post
+}
+
+type Mutation {
+    creatUser(data: creatUserInput): User!
+    creatPost(data: creatPostInput): Post!
+    deleteUser(id: ID!): User!
+}
+
+input creatUserInput {
+    name: String, 
+    email: String, 
+    age: Int
+}
+
+input creatPostInput {
+    title: String!, 
+    body: String!, 
+    published: Boolean!, 
+    author: ID!
+}
+
+type User{
+    id: ID!,
+    name: String!,
+    email: String!,
+    age: Int,
+    posts: [Post]!
+}
+
+type Post {
+    id: ID!,
+    title: String!,
+    body: String!,
+    published: Boolean!,
+    author: User!
+}
+type Comment {
+    id: ID!,
+    text: String!
+}
